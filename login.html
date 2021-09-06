@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <h1 id="welcome"></h1>
+    <p>
+        Your Password seems to be <span id="pwState">not very safe!</span> (Your password starts with: <code id="pwPart">...</code>)
+    </p>
+    <form action="index.html" onsubmit="window.sessionStorage.clear()">
+        <button type="submit">Clear Password</button>
+    </form>
+    <script>
+        console.log(window.sessionStorage)
+
+        window.onload =function() {
+            const user = JSON.parse(window.sessionStorage.getItem('user') || '{}');
+            const email = user.email || 'Hacker';
+            if (email === 'Hacker') {
+                const pwState = document.getElementById("pwState");
+                pwState.innerHTML = `very safe, since you did not enter it, bravo!`;
+            }
+            const pw = user.pw || '......';
+            const welcomeNode = document.getElementById("welcome");
+            welcomeNode.innerHTML = `Hello ${email}`;
+            const pwNode = document.getElementById("pwPart");
+            pwNode.innerHTML = `${pw.slice(0, -2)}...`
+
+        }
+    </script>
+</body>
+</html>
