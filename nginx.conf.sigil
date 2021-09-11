@@ -47,7 +47,7 @@ server {
   error_page  405 =200 @405;
   location @405 {
     proxy_method GET;
-    proxy_pass http://login.gbsl.website/;
+    proxy_pass http://{{ $.APP }}-{{ $upstream_port }};
   }
 
   error_page 400 401 402 403 406 407 408 409 410 411 412 413 414 415 416 417 418 420 422 423 424 426 428 429 431 444 449 450 451 /400-error.html;
